@@ -21,10 +21,10 @@ onMounted(() => getGoods())
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{ goods.categories[1].name}}
           </el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories?.[0].id}` }">{{
+          <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{
               goods.categories[0].name }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
+          <el-breadcrumb-item>{{ goods.name}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <!-- 商品信息 -->
@@ -33,6 +33,7 @@ onMounted(() => getGoods())
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
+              <XtxImageView :image-list="goods.mainPictures" />
 
               <!-- 统计数量 -->
               <ul class="goods-sales">
@@ -82,6 +83,7 @@ onMounted(() => getGoods())
                 </dl>
               </div>
               <!-- sku组件 -->
+              <XtxSku :goods="goods" />
 
               <!-- 数据组件 -->
 
@@ -118,9 +120,9 @@ onMounted(() => getGoods())
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
               <!--24小时-->
-              <DetailHot/>
+              <DetailHot :hot-type="1"/>
               <!--周-->
-              <DetailHot/>
+              <DetailHot :hot-type="2"/>
 
             </div>
           </div>
